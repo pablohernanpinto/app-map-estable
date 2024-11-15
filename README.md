@@ -1,4 +1,4 @@
-﻿# app-map-estable
+<h1 align="center"> Frontend App: Protección Ciudadana</h1>
 
 # Descripción
 Protección Ciudadana será una aplicación móvil diseñada para mejorar la seguridad
@@ -29,6 +29,6 @@ información de los usuarios y garantizar la integridad de los datos reportados.
 ● Crear una interfaz de usuario intuitiva y accesible que facilite la navegación y
 el uso de todas las funciones de la aplicación.
 
-<p aling = "center>
+<p align = "center">
   <img src = "assets/images.png" />
 </p>
