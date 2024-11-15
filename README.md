@@ -30,5 +30,5 @@ información de los usuarios y garantizar la integridad de los datos reportados.
 el uso de todas las funciones de la aplicación.
 
 <p aling = "center>
-  <img src = "assets/images.png" />
+  <img src = "main/assets/images.png" />
 </p>
