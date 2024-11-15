@@ -2,7 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons'; // Importa los iconos
-import HomeScreen from './components/homeScreen';
+import Perfil from './components/Perfil';
 import MapScreen from './components/mapScreen';
 import Carabineros from './components/carabineros';
 
@@ -23,7 +23,7 @@ export default function App() {
         />
         <Tab.Screen
           name="Perfil"
-          component={HomeScreen}
+          component={Perfil}
           options={{
             tabBarIcon: ({ color, size }) => (
               <Ionicons name="person" size={size} color={color} />

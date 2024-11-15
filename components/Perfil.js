@@ -1,12 +1,16 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList } from 'react-native';
+import { StyleSheet, View, Text, FlatList,Button } from 'react-native';
 
-export default function HomeScreen({ route }) {
+export default function Perfil({ route }) {
   const { markers } = route.params || []; // Recuperar los pines desde los parámetros de navegación
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Pines Guardados</Text>
+      <Text style= {styles.title}>Nombre:</Text>
+      <Text style= {styles.title}>Correo:</Text>
+      <Button title="Editar informacion personal"></Button>
+
+      <Text style={styles.title}>Reportes</Text>
       <FlatList
         data={markers}
         keyExtractor={(item, index) => index.toString()}
