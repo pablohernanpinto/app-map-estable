@@ -18,11 +18,14 @@ la toma de decisiones de las autoridades competentes.
 ● Diseñar e implementar un sistema de reporte de incidentes fácil de usar, que
 permita a los usuarios marcar ubicaciones y proporcionar detalles sobre delitos
 y accidentes.
+
 ● Crear un mapa interactivo que muestre los incidentes reportados, con iconos
 distintivos para cada tipo de evento y un mapa de calor para visualizar las áreas
 de mayor concentración de delitos.
+
 ● Implementar medidas de privacidad y seguridad robustas para proteger la
 información de los usuarios y garantizar la integridad de los datos reportados.
+
 ● Crear una interfaz de usuario intuitiva y accesible que facilite la navegación y
 el uso de todas las funciones de la aplicación.
 
