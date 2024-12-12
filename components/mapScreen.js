@@ -1,16 +1,42 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Modal, Button, Text, TextInput } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, Modal, Button, Text, TextInput, Alert } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { useNavigation } from '@react-navigation/native';
 import Checkbox from 'expo-checkbox';
+import * as Location from 'expo-location';
 
 export default function MapScreen() {
+  const [region, setRegion] = useState({
+    latitude: 37.78825,
+    longitude: -122.4324,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+  });
   const [marker, setMarker] = useState([]); // Almacenamiento de múltiples pines
   const [isModalVisible, setModalVisible] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState(null); // Para almacenar las coordenadas
   const navigation = useNavigation();
   const [selectedCheckbox, setSelectedCheckbox] = useState(null); // Estado para el checkbox seleccionado
   const [description, setDescription] = useState(''); // Para capturar la descripción
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        Alert.alert('Permisos denegados', 'No se puede acceder a la ubicación.');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      const { latitude, longitude } = location.coords;
+      setRegion({
+        latitude,
+        longitude,
+        latitudeDelta: 0.005,
+        longitudeDelta: 0.005,
+      });
+    })();
+  }, []);
 
   const handleMapPress = (e) => {
     const { coordinate } = e.nativeEvent;
@@ -23,10 +49,11 @@ export default function MapScreen() {
       const formData = {
         selectedOption: selectedCheckbox,
         description: description,
-        latitude: selectedLocation.latitude,  // Guardar la latitud
+        latitude: selectedLocation.latitude, // Guardar la latitud
         longitude: selectedLocation.longitude, // Guardar la longitud
       };
       console.log('Datos del formulario:', formData);
+      setMarker([...marker, selectedLocation]); // Agregar marcador al mapa
       setModalVisible(false); // Cerrar el modal
 
       // Aquí podrías enviar formData a un servidor o hacer lo que necesites
@@ -44,19 +71,14 @@ export default function MapScreen() {
       <MapView
         style={styles.map}
         onPress={handleMapPress}
-        initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
+        region={region}
       >
         {marker.map((m, index) => (
           <Marker
             key={index}
             coordinate={m}
-            title={m.option}
-            description={`Marcador: ${m.option}`}
+            title={`Marcador ${index + 1}`}
+            description={description}
           />
         ))}
       </MapView>
